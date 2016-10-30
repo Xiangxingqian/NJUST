@@ -1,3 +1,5 @@
+
+一、clone之后添加文件，添加文件步骤
 1、git clone https://github.com/Xiangxingqian/NJUST
 2、clone完成，创建一个shangqingmin.txt, 添加内容
 3、push 
@@ -5,3 +7,10 @@
 	git commit -m "10.27小目标"
 	git push origin master（TYPE USENAME&PASSWORD）
 4、DONE
+
+二、从repo拉取文件步骤
+1、git add -A //添加本地修改过的文件
+2、git commit -m “anything you like”
+3、git pull //拉取远程repo的文件，因为别人提交过，你本地的repo要跟远程的保持一致
+4、git rebase //不知道什么用，哈哈
+5、git push origin master //origin为远程repo名，master是本地repo名

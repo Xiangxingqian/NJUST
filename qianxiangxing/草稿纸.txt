@@ -12,22 +12,4 @@ gif
 material动画：Android 5.0新引进的动画，包括活动间共享元素跳转动画、波纹动画、Circular Reveal Animation(好难翻译，好难理解), View动画
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Material Design之动画设计原则
