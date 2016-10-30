@@ -1,0 +1,7 @@
+1、git clone https://github.com/Xiangxingqian/NJUST
+2、clone完成，创建一个shangqingmin.txt, 添加内容
+3、push 
+	git add -A
+	git commit -m "10.27小目标"
+	git push origin master（TYPE USENAME&PASSWORD）
+4、DONE

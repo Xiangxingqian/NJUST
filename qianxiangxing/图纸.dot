@@ -1,0 +1,17 @@
+digraph d {
+ node [margin=0  fontsize=32 width=0.5 shape=oval style=filled]
+ 
+ O [label="Object"]
+ A [label="Animator"]
+ B [label="ValueAnimator"]
+ C [label="ObjectAnimator"]
+ D [label="TimeAnimator"]
+ 
+ O -> A 
+ A -> B 
+ B -> C 
+ B -> D 
+ 
+ 
+ 
+}

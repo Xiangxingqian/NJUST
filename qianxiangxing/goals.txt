@@ -11,8 +11,18 @@ KR：面对任何一篇技术文章，能解答该技术是什么，有什么用
  
 第二周
 O：画图和动画
-KR：画一只毛老师，做炫酷的动画
+KR：画一只猫老师
  
 10月目标：灵活使用常用的Android组件，简单使用和灵活变动，比如自定义一个dialog，notification等。
 组件有：LinearLayout，RelativeLayout, List View, Grid View, Text Fields, Checkboxes, Radio buttons, toggle buttons, spinners, pickers, notifications, dialog, toast, drag and drop, styles and themes, animation and graphics.
+
+
+10.27
+1、A conclusion of Animations(https://guides.codepath.com/android/Animations)
+2、What is aar?
+3、figure out the realization of Project Material-Animations
+4、figure out files under gradle scripts.
+5、figure out the usage of TextMate.
+
+
  

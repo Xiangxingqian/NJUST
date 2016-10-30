@@ -1,0 +1,33 @@
+动画类型
+Android的动画框架
+Android的5种动画类型
+属性动画--活动跳转动画--fragment动画--layout动画--Drawable动画
+属性动画
+视图动画
+活动跳转动画
+fragment动画
+布局动画
+gif
+粒子效果
+material动画：Android 5.0新引进的动画，包括活动间共享元素跳转动画、波纹动画、Circular Reveal Animation(好难翻译，好难理解), View动画
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Material Design之动画设计原则

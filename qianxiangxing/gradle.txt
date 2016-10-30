@@ -1,0 +1,362 @@
+一、Gradle http://www.cnblogs.com/davenkin/p/gradle-learning-1.html
+
+第一章
+Gradle 构建项目的框架，制定规范，让plugin有序执行。
+
+
+Gradle
+Project 
+Task：一个执行过程，如编译，copy等--Task能够读或写配置
+配置Property：是Project的配置
+
+task helloWorld << { \\helloWorld是一个DefaultTask类型
+   println "Hello World!"
+}
+
+实际情况：
+task(){
+EXECUTE();
+--> println "Hello World!"
+}
+<<{} 表示插入
+
+输出：
+:helloWorld \\task名
+Hello World! \\输出内容
+BUILD SUCCESSFUL \\编辑结果
+Total time: 2.544 secs \\用时
+
+
+指定task的类型，如（type: copy）表示copy类型
+task copyFile(type: Copy) { 
+   from 'xml'
+   into 'destination'
+}
+
+task taskA(dependsOn: taskB) { \\taskA依赖于taskB
+   //do something
+}
+
+
+Project包含许多tasks，gradle自带的许多tasks用于查看project的属性，如project之间的依赖关系，上下级关系，project的属性等。
+
+
+第二章
+Project实际上是多个task的容器，一个task是一个逻辑执行单元。所有的task存放在Project的taskContainer中
+
+创建task的几种方式：
+(1) task hello1 << {
+   println 'hello1'
+} 
+<<表示追加的意思，想hello1中追加执行过程println "hellow1"，等同于 doLast()
+task hello2 {
+   doLast {
+      println 'hello2'}
+}
+
+task hello2 {
+   doFirst {
+      println 'hello2'}
+}
+
+(2) 通过TaskContainer的create()方法创建Task
+(3) 声明Task之间的依赖关系
+task hello5(dependsOn:hello4) << {
+    println 'hello5'
+}
+or
+task hello6 << {
+   println 'hello6'
+}
+
+hello6.dependsOn hello5
+
+配置
+类似于Java，Ant的.properties文件, 声明某部分变量的值
+task hello7 << {
+   description = "this is hello7" 
+   println description
+}
+
+task hello8 << {
+println description
+}
+
+hello8 {
+description = "this is hello8" \\result: this is hello8
+}
+Project的执行分为两步：先配置、再执行。
+
+第四章 增量式构建
+每个task都有inputs和outputs，如果两个task的输入输出相同，那么我们认为这两个task是一个task。
+推论是，如果一个task的两次输入相同，那么输出也相同。因此，task的增量式构建即如果task的输入没有发生变化，则task不予执行。
+
+input和outputs存放在文件或文件夹中，不用执行，读取即可。
+
+第五章 Property
+Project包含task，plugin和project。属性Property可以是task、plugin和project的属性。本章介绍Property的赋值。
+各种方式对Property赋值：
+ext：ext.property1 = "this is property1" or ext { property2 = "this is property2" }
+命令行：gradle -Pproperty3="this is property3" showCommandLieProperties
+JVM参数：gradle -Dorg.gradle.project.property3="this is another property3" showCommandLieProperties
+环境变量：export ORG_GRADLE_PROJECT_property3="this is yet another property3" 
+gradle showCommandLieProperties
+
+第六章 Plugin
+Gradle常用Java Plugin。Java Plugin向Project中引入多个task和Property，帮助Gradle构建生命周期。Gradle本身不能构建生命周期。
+
+Java Plugin执行的生命周期的概念
+执行
+gradle build
+出现
+:compileJava 
+:processResources
+:classes
+:jar
+:assemble
+:compileTestJava
+:processTestResources
+:testClasses
+:test
+:check
+:build
+BUILD SUCCESSFUL
+Total time: 4.813 secs
+
+以":"开头的都是task，"build" task依赖于其他task，上述的task执行列表展示了build task依赖于compileJava, processResources, classes, jar, assemble, compileTestJava, processTestResouces, testClasses, test, check, build 等11个task。
+
+除了task之外，plugin还引入了额外的Property，如sourceCompatibility用于指定编辑的Java版本，archivesBaseName指定Jar的名字。
+
+Source Set概念
+默认的source set一个名为main， 一个名为test。这两个set与Java工程的main和test没什么联系。
+创建source set的名字
+自动创建Property：java和resources，表示java的源文件集合和资源文件的集合。
+
+sourceSets {
+   main {
+      java {  //这里是一个Property
+         srcDir 'java-sources'
+      }
+      resources {
+         srcDir 'resources'
+      }
+   }
+}
+
+创建source set
+sourceSets {
+   api
+}
+该Api所对应的Java源文件目标是${path-to-project}/src/api/java，而资源文件的目录是${path-to-project}/src/api/resources。当然也可以自己配置，如上图。
+
+自动创建3个task：compile<SOURCESET>Java、process<SOURCESET>Resources和<SOURCESET>Classes，如compileApiJava、processApiResource和apiClasses。
+
+source set的依赖----------看不懂。
+
+第七章 依赖管理
+一个项目依赖于第三库、另一个Java项目，将第三方库的Jar文件放在自己的classpath下面。
+Repository是一个解决依赖关系的属性，即代码仓库，他告诉gradle去什么地方获取依赖。----Repository的配置。
+Gradle的repository识别Maven和ivy的repository，
+
+加入maven的repository
+repositories {
+   mavenCentral()
+}
+
+什么是Configuration？
+Gradle将对依赖进行分组，比如编译Java时使用的是这组依赖，运行Java时又可以使用另一组依赖。每一组依赖称为一个Configuration
+
+dependencies { \\依赖关系
+   compile 'org.slf4j:slf4j-log4j12:1.7.2'\\compile是一个configuration
+   testCompile 'junit:junit:4.8.2' \\测试依赖
+   compile files('spring-core.jar', 'spring-aap.jar') \\依赖本地的jar包
+   compile fileTree(dir: 'deps', include: '*.jar')  \\依赖deps目录所有的jar包
+   
+}
+p.s 如果存在依赖冲突，gradle会选择最新版本的jar包。
+
+
+总结：
+build.gralde的元素：
+1. task
+2. property P { } 
+3. configuration 针对依赖关系
+4. plugin
+
+
+Gradle执行一系列方法，如apply(), task(), configuration(), dependencies()方法等，如果添加plugin，则先执行apply方法，在执行plugin代码。
+
+
+
+分析：
+http://google.github.io/android-gradle-dsl/current/index.html
+apply plugin: 'com.android.application' //导入插件
+apply plugin: 'bugly'   //添加Bugly符号表插件
+apply plugin: 'com.antfortune.freeline'
+
+bugly { //插件名
+    appId = '900013921'    //注册时分配的App ID //插件Project的属性
+    appKey = 'arQm3Tfd4uVok6df'  //注册时分配的App Key
+    upload = true   //是否自动上传符号表开关,默认true
+    execute = true  //是否生成符号表并自动上传,默认true
+}
+
+android { \\插件
+    compileSdkVersion 23 //是property
+    buildToolsVersion '24' 
+    useLibrary 'org.apache.http.legacy'
+    defaultConfig {
+        applicationId "com.fangdd.mobile.housekeeper"
+        minSdkVersion 16
+        targetSdkVersion 23
+        versionCode VERSION_CODE as int
+        versionName VERSION_NAME
+        multiDexEnabled true
+        manifestPlaceholders = [
+                GETUI_APP_ID    : "tsWsazoLky9ojRnq2NfOF2",
+                GETUI_APP_KEY   : "UHWp9mFIks8nUA1e0vmd36",
+                GETUI_APP_SECRET: "HhsPL15V7nADjFDniIOxM3",
+                mapKey          : "wz0hiwCLGiv0xnV0ai3fGpxz",
+                UMENG_APPKEY    : "5513779ffd98c54b34000f9e",
+                PACKAGE_NAME    : applicationId
+        ]
+        ndk {
+            abiFilter 'armeabi' // 例如：abiFilters 'armeabi, x86'
+        }
+    }
+
+    signingConfigs { //property set
+        release {
+            storeFile file("./fangdd")
+            storePassword "fangdd11"
+            keyAlias "fangdd"
+            keyPassword "fangdd11"
+        }
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            signingConfig signingConfigs.release
+//            minifyEnabled true
+//            zipAlignEnabled true
+//            shrinkResources true
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+//        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/LGPL2.1'
+    }
+//
+//    compileOptions {
+//        sourceCompatibility JavaVersion.VERSION_1_7
+//        targetCompatibility JavaVersion.VERSION_1_7
+//    }
+    dexOptions {
+        incremental true
+        javaMaxHeapSize "4g"
+    }
+
+    freeline {
+        hack true
+        applicationProxy false
+    }
+
+    dataBinding {
+        enabled = true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:23.2.1'
+    compile 'com.android.support:support-v4:23.2.1'
+    compile 'com.facebook.fresco:fresco:0.13.0'
+    compile 'com.android.support:multidex:1.0.1'
+    compile 'com.mcxiaoke.volley:library:1.0.15'
+    compile 'com.android.support:design:23.2.1'
+    compile 'com.android.support:recyclerview-v7:23.2.1'
+    compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'com.umeng.analytics:analytics:latest.integration'
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.3'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.3'
+    compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'com.google.code.gson:gson-parent:2.7'
+    compile 'com.google.code.gson:gson:2.7'
+    compile 'com.getui:sdk:+'
+    compile 'com.fdd.android:fddemoji:2.0'
+    debugCompile 'com.antfortune.freeline:runtime:0.7.2'
+    releaseCompile 'com.antfortune.freeline:runtime-no-op:0.7.2'
+    //    compile 'com.antfortune.freeline:runtime:0.7.2'
+    // LeanCloud 基础包
+    compile 'cn.leancloud.android:avoscloud-sdk:v3.+' //一条configuration
+    // 推送与实时聊天需要的包
+    compile('cn.leancloud.android:avoscloud-push:v3.+@aar') { transitive = true }
+    testCompile 'junit:junit:4.12'
+    //其中latest.release指代最新版本号，也可以指定明确的版本号，例如1.0.0
+    compile 'com.tencent.bugly:nativecrashreport:latest.release'
+    //其中latest.release指代最新版本号，也可以指定明确的版本号，例如2.2.0
+    compile 'com.tencent.bugly:crashreport_upgrade:latest.release'
+
+    //基础平台的上传图片sdk
+    compile group: 'com.fangdd.oceanstack', name: 'sdk-android', version: '1.0.2'
+
+    compile project(':viewpagerindicator')
+    compile project(':swipelistview')
+}
+
+二、TextMate http://manual.macromates.com/en/preface#philosophy_of_textmate
+
+1.2 TextMate的设计哲学
+--重用 与其写一条简单命令去解决一个问题，不如写复杂的脚本解决一类问题。
+--要求用户武装自己 用户必须熟悉：正则表达式，TextMate的编程系统和shell基本。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
