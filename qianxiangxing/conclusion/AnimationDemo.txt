@@ -1,0 +1,31 @@
+Masterial-Animations App主要功能
+
+1. Activity transition animations，including enter, exit, reenter and return animations.
+2. ShareElements transitions, including single element, multiple elements, 
+3. Activity的入出场动画作用于window，Fragment的动画作用于Fragment。
+4. 入出场动画分为slide(侧滑)，explode(爆炸)和fade(渐变)。
+5. 动画使用 
+in Java: 
+	Slide slide = new Slide(); 
+in XML:
+	<explode
+		android:duration="@integer/anim_duration_long"
+		android:interpolator="@android:interpolator/bounce" />
+		
+6. 共享元素的跳转--startActivity(intent, bundle) bundle携带共享元素的信息, 如共享元素的View和共享元素的transitionName。
+两个界面共享的元素只要满足共享元素对中的String元素与共享元素的transitionName匹配。
+7. 可以指定多个共享元素
+8. 改变View的大小，位置. 通过layout的LayoutParams来设置View的放大和缩小；通过layoutParams设置view的左对齐or居中or右对齐
+9. View每隔100ms展示，child.animate().setStartDealy(100).setScaleX(1).setScaleY(1)
+10. 设置波纹效果
+--button自带波纹效果
+--使用主题让所有view带有波纹效果 
+--设置布局background使view带有波纹效果 android:background="?android:attr/selectableItemBackground"  
+--设置view的background使view带有波纹效果 android:background="?android:attr/selectableItemBackgroundBorderless" 
+
+android:colorControlHighlight：设置波纹颜色
+android:colorAccent：设置checkbox等控件的选中颜色
+
+11. 四色球变换位置
+12. 动画颜色 小球爆炸充满全屏
+

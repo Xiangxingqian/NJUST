@@ -1,0 +1,7 @@
+TextMate笔记--http://manual.macromates.com/en/preface#philosophy_of_textmate
+
+1.2 设计哲学
+--重用 与其编写一条命令解决一个问题，不如编写脚本解决一类问题。
+--用户 掌握基础:正则表达式，程序语言和shell命令。
+
+

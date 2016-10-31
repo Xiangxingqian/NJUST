@@ -1,0 +1,56 @@
+唉，还是无法高亮某些文本，放弃了，所有的知识点写在博客中。
+
+O:
+
+1、A conclusion of CodePath--Animations(https://guides.codepath.com/android/Animations)
+2、What is aar?
+3、figure out the realization of Project Material-Animations（今天晚上再做）
+4、figure out files under gradle scripts
+5、figure out the usage of TextMate 
+
+
+KR:
+
+Key Content of CodePath
+1、Property Animations--Using ObjectAnimator in Java
+2、Property Animations--Using XML
+3、View Animations--Using ViewPropertyAnimator in Java
+4、View Animations--Using XML
+5、Layout Animations
+6、Activity Transition
+7、Fragment Transition
+
+For aar
+
+复杂的android library
+
+For files under gradle scripts
+
+see http://www.cnblogs.com/xiangxing/p/6008713.html
+
+ 
+Gradle Scripts--配置项目的基本信息，如project的层级关系，sdk所在的位置，gradle所在的位置，程序运行时刻的参数配置
+
+--build.gradle(Main Project) root-project的配置
+
+--build.gradle(Module:app) 主项目的配置
+
+--build.gradle(Module:swipelistview) 次项目的配置
+
+--build.gradle(Module:viewpager) 次项目的配置
+
+--gradle.properties(Global Properties) 运行时刻的参数配置，如并发执行，内存分配，是否开启守护线程。
+
+--gradle-wrapper.properties (Gradle Version) gradle的位置
+
+--settings.gradle(Project Properties) 这个Project包含subproject，如include ":app", "viewpager", "swipelistview"，表示整个project包含三个子project。
+
+--local.properties(SDK location)：sdk所在的位置
+
+ 
+
+For usage of TextMate
+
+没做完，好尴尬
+
+For realization of Project Material-Animations

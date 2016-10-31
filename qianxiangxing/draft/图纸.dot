@@ -11,4 +11,5 @@ digraph d {
  A -> B 
  B -> C 
  B -> D 
+ O -> D 
 }
