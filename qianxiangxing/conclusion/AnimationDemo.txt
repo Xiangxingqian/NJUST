@@ -29,3 +29,12 @@ android:colorAccent：设置checkbox等控件的选中颜色
 11. 四色球变换位置
 12. 动画颜色 小球爆炸充满全屏
 
+13.	属性动画(ObjectAniamator)和一般动画的不同：属性动画是view的属性随着时间的改变而改变,而一般动画则是View的图片不是View随着时间的改变而改变，View的属性不改变，因此在动画结束时，View会回到初始状态。
+14. 属性动画包括透明度，位移等。
+其中值得一提的是位移，如public TranslateAnimation(float fromXDelta, float toXDelta, float fromYDelta, float toYDelta) 其中的参数都是相对于View的，而不是相对于窗体的。
+translationX(400) 表示移动到点(0,400)
+translationXBy(400) 增量，表示(0, currentPosition+400)
+15. RotateAnimation的旋转轴默认是(0,0)点，但这个点不是相对于屏幕的(0,0)点，而是相对于View的(0,0)点
+16. 因此统一来看，动画涉及到坐标位置都是相对于View的。(其实也好，相对于屏幕挺坑的。比如旋转时要计算屏幕的绝对坐标)
+17. res/anim 放一般动画，只能一起执行  res/animator放属性动画，属性动画可以顺序执行，也可以一起执行
+

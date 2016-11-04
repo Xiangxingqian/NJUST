@@ -22,15 +22,21 @@ TODO
 	</vector>
 }
 --Android Transition类
+--Java Timer实现
+--异步线程执行死循环操作是否会影响整个程序？
+--Android性能检测, 比较两个实现方式的好坏。如使用Handler和Timer的资源开销。
+--sh脚本语言
+--一些陌生但又常见、有印象但概念模糊的名词：
+theme, styleable, TypedArray, context, broadcast, attributeSet, xmlns, xmlns:tools, xmlns:app,
+attrs, declare-styleable, ⭐️⭐️⭐️⭐️⭐️
 
 
 ----------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------
 
 DOING
---Android Animation
---figure out the usage of TextMate.
---figure out the realization of Project Material-Animations
+--Android Graphic
+--Custom View 
 
 
 ----------------------------------------------------------------------------------------
@@ -40,6 +46,9 @@ DONE
 --A conclusion of Animations(https://guides.codepath.com/android/Animations)
 --What is aar?
 --figure out files under gradle scripts.
+--Android Animation
+--figure out the usage of TextMate.
+--figure out the realization of Project Material-Animations
 
 
 

@@ -13,3 +13,6 @@ material动画：Android 5.0新引进的动画，包括活动间共享元素跳�
 
 
 Material Design之动画设计原则
+
+
+如果FillBefore为true，那么在动画开始之前，动画会应用他的转换

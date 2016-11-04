@@ -1,0 +1,1 @@
+View5个基本属性：drawing, interation, measurement, attributes, persistence。显示、交互、大小、属性和保存。

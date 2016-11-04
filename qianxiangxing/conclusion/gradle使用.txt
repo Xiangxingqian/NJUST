@@ -1,0 +1,10 @@
+一、环境变量配置
+
+GRADLE_HOME='/Users/xiangxingqian/gradle-3.0'
+export GRADLE_HOME
+
+二、生成Gradlew(gradle wrapper)
+gradle wrapper
+
+三、运行./gradlew initFreeline
+gradlew和gradle都是sh脚本，最终都是运行java程序

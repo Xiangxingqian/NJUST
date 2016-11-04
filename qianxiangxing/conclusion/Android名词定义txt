@@ -1,0 +1,32 @@
+Android动画：动画是事物的属性随着时间的改变而改变
+Android图画：一支画笔在一张画布上画画
+Android的transition：活动之间转变时的展示动画
+View：一个展示在屏幕上的物体。有大小、形状、颜色、动画、交互操作和中间状态等。
+ObjectAnimator：属性动画。刻画一个View的属性随着时间的改变而改变
+ViewAnimation：一般动画。刻画一个View的图片随着时间的改变而改变。 Attention：属性动画用Animator，而一般动画用Animation。
+Animator.AnimatorListener：动画监听器，监听动画的开始、结束等状态。
+AnimationSet or Animator：动画集合
+AlphaAnimation: 透明度动画
+TranslateAnimation: 平移动画(动画的起始位置是以当前View为(0,0))
+Path: 路径，线性或非线性。可设置各种函数的path，起点为(0,0)
+px: 像素
+dip/dp: 物理像素 1dp = 1/160inch换算方式 px/总px=dp/总dp 总dp = 屏幕宽度*160 
+onMeasure():根据内容的宽高画View的宽高，度量
+MeasureSpec:度量规范，解决父容器和子View的宽高大小冲突问题。子View的大小三种模式：任意大小，使用parent指定的大小，最大不超过指定值。
+Toggling: 切换
+Instance State: View，Fragment，Activity都可以包含多个状态，当外部条件改变时，如来了一个电话，app应保存状态信息以备状态resume展示。
+保存当前状态，接着上一个保存的状态执行。怎么保存状态呢？用bundle。
+Bundle：一捆脏东西, 好好研究⭐️⭐️⭐️
+
+
+
+context:
+resources:
+displaymetric:
+display:
+WindowManager:
+Window:
+
+
+
+
