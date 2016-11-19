@@ -16,3 +16,10 @@ Material Design之动画设计原则
 
 
 如果FillBefore为true，那么在动画开始之前，动画会应用他的转换
+
+
+MasteringAnimations的主要两个功能
+1. 活动之间的跳转，包括enter，exit， return和reenter时展现的平移，爆炸，shareelement等效果。
+2. View的动画效果，包括放缩，平移，旋转，透明度和循环等。
+
+

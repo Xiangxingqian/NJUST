@@ -1,0 +1,64 @@
+SnakeView
+ActionBar
+ActionView 居然在menu里面
+SearchView 居然在menu里面
+ActionProvider 
+ShareActionProvider分享，子类
+
+
+并且理解Up的概念。
+有一个小任务，使用actionBar，做一个包含fragment的，searchView，acitonProvider等的activity。
+
+
+
+游戏人生
+终结的炽天使
+精灵宝可梦
+七大罪
+
+
+今日学习内容
+1. Theme
+2. 状态栏、window等
+3. 权限
+4. @ ？Android自带的样式，颜色，drawable等。
+5. app tool区别，没有区别，只是一个标签。
+6. window的概念
+
+2. 状态栏statusBar，即手机最上方电量的那一栏
+
+4. 经常在程序中看到调用系统资源带有@和?,两者的区别如下：
+调用系统的样式，主题，动画资源等一般以@开头，
+比如：
+android:theme="@android:style/Theme.Dialog"
+android:interpolator="@android:anim/accelerate_decelerate_interpolator"
+
+调用attr下的资源设置view的属性，一般以?开头，比如：
+android:textColor="?android:attr/textColorPrimary"
+style="?android:attr/progressBarStyleLarge"
+
+
+有一点不理解
+<style name="Base.ThemeOverlay.AppCompat.ActionBar">
+        <item name="colorControlNormal">?android:attr/textColorPrimary</item> 
+        <item name="searchViewStyle">@style/Widget.AppCompat.SearchView.ActionBar</item>
+    </style>
+	
+<attr name="textColorPrimary" format="reference|color" />
+
+但在解析的时候，肯定会为这个属性设置一个default颜色，并且存放在ArrayType的colorStateList中。
+
+
+5. 懂了
+
+Theme、权限和window？
+
+window有许多方法，有空再看。
+
+
+ApplicationContext是application的context，而Activity Context是当前ACtivity的context，当在activity中使用时，一般使用ActivityCOntext，而如果在Service或Application中
+使用时，推荐使用ApplicationContext。另外，乱用ACtivityCOntext可能会导致内存泄漏，即实例引用没有释放。
+
+
+
+

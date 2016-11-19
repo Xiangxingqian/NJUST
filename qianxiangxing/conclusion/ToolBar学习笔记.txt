@@ -1,0 +1,15 @@
+ToolBar
+是一个ViewGroup，可以放置在屏幕的任何位置。是一个更加强大的ActionBar，比ActionBar更加灵活。
+
+
+
+ToolBar vs ActionBar
+ToolBar是一个普通的View，可以放置在任何位置。
+ToolBar可以有多个，在一个活动之中。
+
+
+
+
+
+
+

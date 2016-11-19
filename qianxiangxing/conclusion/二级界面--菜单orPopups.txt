@@ -1,0 +1,13 @@
+上下文编辑模式
+点击某个按钮时，弹出一个actionBar
+
+PopupMenu
+位于View下方的菜单
+
+PopupWindow
+一个简单的popup
+
+DialogFragment
+一个功能强大的dialog，并且view的类型是fragment
+
+AppRate五星好评

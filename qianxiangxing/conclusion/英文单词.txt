@@ -1,0 +1,3 @@
+dedicated: 专用的
+measure: 度量
+hierarchy: 层次结构

@@ -1,0 +1,62 @@
+Android知识框架
+
+一、核心功能点：
+--Context，Activity生命周期，Application再认识
+--Android文件结构
+--应对配置转变
+--AppCompat包
+--权限管理
+--认识Enumerated Annotations
+
+二、视图与布局
+三、交互
+四、导航与跳转
+五、网络
+六、存储
+七、fragment
+八、传感器
+九、服务与广播
+十、Testing
+十一、Lib and WOrkFlow
+
+总结：Android app = 3(存储，UI展示，交互)+ 2(权限和编译工具)。
+
+
+11.16交互模块
+--Interation
+View的8个listener，在Java和XML使用，AdapterView的3个listener，Edittext的两个listener， INputView如NumberPicked，SeekBar的特有listener等，其中要注意的是OnEditorActionListener，当键盘收起的时候调用。
+--Toast
+属性有message，duration，view。可以设置view哦，任何View都可以toast.setView。设了一只猫老师，哈哈哈哈
+--自定义监听器
+TODO
+--SnakeBar使用，类似于Toast，像蛇一样位于屏幕下方的bar。又类似于View动画，都有持续时间。
+SnakeBar snakeBar = SnakeBar.make(view, ...);注意View必须是CoordinateLayout或FrameLayout。另外，为什么设置LinearLayout会报错呢，因为源码中限定了只能用Coordinate或framelayout，所以呢要多看源代码。
+
+--复杂的手势
+滑动，双击放大和缩小，捏，拖拽，活动效果
+
+
+
+
+
+
+--Navigation
+
+--当callback的返回值是boolean类型，表示什么意思？ 好像表示动作已经被终止，不再下传。
+--Activity的onKeyDown方法可以监听物理和键盘按键
+--OnEditorActionListener 当键盘消失的时候调用：既可以点击done，也可以点击空白页。
+--imeOptions: 我们经常看到键盘右下角有一个结束按钮，如下一个，完成，发送，搜索等等，要指定相应的文案，只需一行android:imeOptions="actionSend"即可
+--LayoutInflater的第二个参数是什么意思？即ViewGroup有什么用？getLayoutInflator()和LayoutInflator()有什么不同  
+--弄清楚toolbar，actionBar、menu、window、manifest中icon、theme和title等关系。
+
+AppBar和ToolBar再理解？？？   
+
+
+Android中有个主题叫Theme.AppCompat.Light.NoActionBar，表示无ActionBar。
+
+
+
+
+             
+
+

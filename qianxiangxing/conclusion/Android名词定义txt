@@ -17,7 +17,20 @@ Toggling: 切换
 Instance State: View，Fragment，Activity都可以包含多个状态，当外部条件改变时，如来了一个电话，app应保存状态信息以备状态resume展示。
 保存当前状态，接着上一个保存的状态执行。怎么保存状态呢？用bundle。
 Bundle：一捆脏东西, 好好研究⭐️⭐️⭐️
-
+ProgressBar: 刻画进度随着时间的改变而改变的View。表现方式可以是圆[0,360]，进度条[0,100]，五角星[空，满]
+onDraw(): 何时执行
+内部类：就是一般被当前类使用的一般类
+样式：对组件的显示样式进行控制，如改变文本的颜色和大小等
+主题：对窗口外观进行控制，如设置窗口的背景色等。不再是外观。而是给一个容器内的元素定义统一的样式。如给Application定义的theme会用在Activity上，而对LinearLayout定义的theme会应用到其子view上。
+AppCompat包：适用于所有API版本的Activity，主流Activity。
+DrawerLayout: 至多包含三个root view的抽屉式布局。位于第一个位置的View为主ContentView，第二个位于左边，第三个位于右边。
+AppBarLayout: 是一个布局方向为垂直方向的LinearLayout，比LinearLayout多了一个app:layout_scrollFlags，支持连带滚动。当某个scrollView发生滚动时，
+包含app:layout_scrollFlags的View也会发生改变。
+ToolBar：一个可以显示标题，子标题，logo，menu等的ViewGroup
+CollapsingToolbarLayout：AppBarLayout的加强版，强调toolbar和scrollView的关联性。并且可以控制toolBar的滚动速度。固定toolbar。
+Android沉浸式模式：全屏化
+?@区别：@指向style，color等，?指向attr
+attr: 如textColor，如果不设置，会取一个默认的颜色，同理，如果 android:textColor="?android:attr/textColor" 照样会设置一个颜色。
 
 
 context:

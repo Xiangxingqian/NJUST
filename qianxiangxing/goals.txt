@@ -29,7 +29,7 @@ TODO
 --一些陌生但又常见、有印象但概念模糊的名词：
 theme, styleable, TypedArray, context, broadcast, attributeSet, xmlns, xmlns:tools, xmlns:app,
 attrs, declare-styleable, ⭐️⭐️⭐️⭐️⭐️
-
+--Android Studio live templates中，多个位置使用同一个变量如$value$时，能否控制$value$的开始位置？
 
 ----------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------

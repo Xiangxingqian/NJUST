@@ -1,0 +1,96 @@
+expression能否自定义
+
+
+预定义函数 in Live tempalte variable
+
+annotated("annotation qname")	TODO
+arrayVariable()		列表当前范围内(class内)所有的集合类型(包括list，set和数组类型等)
+anonymousSuper()	提示Kotlin表达式(Kotlin是一种表达式)
+сamelCase(String)	将String转为驼峰命名String，如my-text-file/my text file/my_text_file都转成myTextFile.
+capitalize(String)	将String的首字符置为大写
+capitalizeAndUnderscore(sCamelCaseName) 将sCamelCaseName所有字符转为大写，再按照反加下划线，如FooBar转换成FOO_BAR
+castToLeftSideType()	根据右边表达式定义左边类型
+className(sClassName)	返回当前类名
+complete()				补全提示
+completeSmart()			智能补全
+componentTypeOf (<array variable or array type>)  TODO
+currentPackage()		当前包名
+date(sDate)				当前日期，参数可以为空，也可以是format类型，如"dd MM yyyy"
+decapitalize(sName)		将String的首字符置为小写
+descendantClassEnum(<String>)	查看string类的所有子类
+enum(sCompletionString1,sCompletionString2,...) TODO
+escapeString(sEscapeString) 	转义指定的字符串  翻译习惯，去掉被字会清晰很多。如specfied：指定而不是被指定。
+expectedType()		期望类型
+fileName(sFileName)	返回文件名（包含后缀）
+fileNameWithoutExtension(sFileName) 返回文件名（不包含后缀）
+firstWord(sFirstWord)	返回第一个字符
+groovyScript("groovy code")		TODO
+guessElementType (<container>)	返回集合类中元素类型
+iterableComponentType(<ArrayOrIterable>)	TODO
+iterableVariable() TODO
+lineNumber()	当前行
+lowercaseAndDash(String) 转小写，加-。如MyExampleName To my-example-name
+rightSideType()		赋值为右边类型
+snakeCase(sCamelCaseText)	驼峰转下划线 snakeCase To snake_case
+spaceSeparated(String)		驼峰转空格 snakeCase To snake case
+subtypes(sType)		TODO	没用
+suggestIndexName()	建议index变量	没用
+suggestFirstVariableName(sFirstVariableName)	TODO 没什么用
+variableOfType(<type>)	TODO	没什么用
+
+重要的Predefined Functions
+
+几大类
+
+数组、迭代器、集合、以及变量的元素类型
+guessElementType (<container>)
+iterableComponentType(<ArrayOrIterable>)
+componentTypeOf (<array variable or array type>)
+typeOfVariable(VAR)
+
+
+提示当前类中的数组，迭代器，集合以及指定类型的变量。
+arrayVariable()
+iterableVariable()
+variableOfType(<type>)
+
+
+根据左或右值的类型，指定类型
+rightSideType()
+castToLeftSideType()
+
+字符串转驼峰命名
+сamelCase(String)
+
+提示默认的int值，var值
+suggestVariableName()
+suggestIndexName()
+
+
+
+
+arrayVariable()		列举当前类中的array，包含
+iterableVariable()	列举当前类中的iterable
+
+сamelCase(String)	转成驼峰命名
+castToLeftSideType()	强制转换类型是左值类型
+className		类名
+complete		不全
+componentTypeOf (<array variable or array type>)	数组元素的类型
+guessElementType	Collection元素的类型 
+iterableComponentType(<ArrayOrIterable>)	iterable元素类型
+
+
+expectedType()	返回期望类型
+descendantClassEnum(<String>)	显示子类
+
+	
+iterableVariable
+
+iterableComponentType(<ArrayOrIterable>) 
+guessElementType (<container>)
+
+
+
+
+

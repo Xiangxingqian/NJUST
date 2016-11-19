@@ -1,15 +1,16 @@
 digraph d {
  node [margin=0  fontsize=32 width=0.5 shape=oval style=filled]
  
- O [label="Object"]
- A [label="Animator"]
- B [label="ValueAnimator"]
- C [label="ObjectAnimator"]
- D [label="TimeAnimator"]
+ O [label="Main"]
+ A [label="foo1"]
+ B [label="foo2"]
+ C [label="foo3"]
+ D [label="Sysout"]
  
- O -> A 
- A -> B 
- B -> C 
- B -> D 
- O -> D 
+ O -> A [label=1]
+ O -> B [label=2]
+ O -> D [label=3]
+ A -> B [label=4]
+ B -> C [label=5]
+ C -> D [label=6]
 }

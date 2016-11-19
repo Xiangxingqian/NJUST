@@ -1,0 +1,13 @@
+包含的功能, 变化
+1. AppCompatActivity
+2. FragmentActivity 继承于AppCompatActivity， getFragmentManager() getSupportFragmentManager()⭐️⭐️⭐️⭐️⭐️
+3. getSupportActionBar() 
+4. AlertDialog 哎哟，终于把那个yes和no之间还有一根竖线的dialog给换掉了，新的还是蛮漂亮的
+5. 主题<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+设置无title的主题
+<style name="AppTheme.NoActionBar">
+      <item name="windowActionBar">false</item>
+      <item name="windowNoTitle">true</item>
+  </style>
+6. Menu MenuItemCompat.getActionView()
+android:showAsAction -> app:showAsAction 

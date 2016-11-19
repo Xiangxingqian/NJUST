@@ -1,0 +1,6 @@
+问题：radiogroup有5个radiobutton，要求他们左边3+右边2，对齐排序
+解决方案有
+一、使用radiobutton+databinding双向绑定
+二、使用radiobutton+databinding
+三、使用自定义radiogroup
+

@@ -1,0 +1,6 @@
+start_bargain  int 发起谈价
+report  int 报备量
+valid_bargain  int 谈价有效
+face  int 约面谈
+success  int 谈价成功
+fail  int 谈价失败

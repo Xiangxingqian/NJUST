@@ -1,2 +1,3 @@
 链接知识点
 >>>Gradle学习草稿--http://www.cnblogs.com/xiangxing/p/6008713.html
+>>>Android动画的几种实现方式--http://www.cnblogs.com/xiangxing/p/6036245.html
