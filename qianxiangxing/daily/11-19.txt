@@ -33,6 +33,43 @@ bind表示绑定，绑定Activity和Service。让Service启动后，执行一部
 那如何在进程与进程之间建立关联呢？
 使用AIDL进行跨进程通信（IPC--Inter-procedural communication）
 
+AIDL的目地是让多个应用程序关联并共享一个Service进程。
+
+AIDL是什么？有什么怎么使用呢？
+AIDL定义了一些接口，如
+package com.example.servicetest;  
+interface MyAIDLService {  
+    int plus(int a, int b);  
+    String toUpperCase(String str);  
+} 
+
+在Service中，对他进行实现，如
+MyAIDLService.Stub mBinder = new Stub() {  
+  
+        @Override  
+        public String toUpperCase(String str) throws RemoteException {  
+            if (str != null) {  
+                return str.toUpperCase();  
+            }  
+            return null;  
+        }  
+  
+        @Override  
+        public int plus(int a, int b) throws RemoteException {  
+            return a + b;  
+        }  
+    };  
+
+我觉得AIDL转化成Java时，会定义一个Stub内部类，这个类是一个实现IBinder的子类。
+
+在Activity，获取MyAIDLService实例
+myAIDLService = MyAIDLService.Stub.asInterface(service)，根据IBinder获取Service，然后调用相关的方法。
+
+
+又如何实现跨进程通信呢？这还不简单，调用implicit intent啊。
+
+
+
 
 
 
