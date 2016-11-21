@@ -2,3 +2,100 @@
 1. 网络
 2. Handler
 3. 复习前面所有的知识点。
+4. Databinding, MVP, MVVM
+
+
+⭐️⭐️⭐️消息处理机制⭐️⭐️⭐️
+什么是消息处理机制呢？
+本质是一个开启无限循环的线程监听并处理获得的消息。
+
+简单来说，就是一个线程开启了无线循环模式，通过遍历自己的消息列表，并挨个处理的机制。如果没有消息，则阻塞，如果有消息，则处理。其他线程可以往该线程的消息列表中添加task，让其执行。其实就是一个打杂的帮手。只不过这个帮手多了个消息获取的通道。
+
+如Looper，MessageQueue，Handler以及message是什么关系呢？
+首先Looper，MessageQueue，Message都是主线程拥有的，用于处理消息。Handler是一个帮手类，方便处理message的发送和处理。
+
+那么问题来了，处理什么消息呢？
+
+
+什么是IPC？
+
+Handler是什么？
+
+很有意思的观点：主线程中有Looper，并调用了Looper.loop()方法才使得主线程不会休眠。
+一个主线有一个Looper，一个messageQueue。
+
+TODO 太复杂了，先回到网络。
+
+
+⭐️⭐️⭐️MVP，MVVM，Databinding⭐️⭐️⭐️
+databinding深入了解
+XML拆分成两个布局：数据变量和视图布局。
+
+数据变量xml
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Layout layout="activity_data_bind" modulePackage="cn.easydone.componentizationapp" absoluteFilePath="/Users/xxx/Documents/workspace/ComponentizationApp/App/src/main/res/layout/activity_data_bind.xml" directory="layout" isMerge="false">
+  <Variables declared="true" type="cn.easydone.componentizationapp.model.User" name="user">
+    <location startLine="5" startOffset="8" endLine="7" endOffset="63" /></Variables>
+  <Targets>
+    <Target id="@+id/activity_data_bind" tag="layout/activity_data_bind_0" view="RelativeLayout">
+      <Expressions/>
+      <location startLine="11" startOffset="4" endLine="28" endOffset="20" /></Target>
+    <Target id="@+id/name" tag="binding_1" view="TextView">
+      <Expressions>
+        <Expression text="user.name" attribute="android:text">
+          <Location startLine="20" startOffset="12" endLine="20" endOffset="38" />
+          <TwoWay>false</TwoWay>
+          <ValueLocation startLine="20" startOffset="28" endLine="20" endOffset="36" /></Expression>
+      </Expressions>
+      <location startLine="16" startOffset="8" endLine="20" endOffset="41" /></Target>
+    <Target id="@+id/age" tag="binding_2" view="TextView">
+      <Expressions>
+        <Expression text="String.valueOf(user.age)" attribute="android:text">
+          <Location startLine="27" startOffset="12" endLine="27" endOffset="53" />
+          <TwoWay>false</TwoWay>
+          <ValueLocation startLine="27" startOffset="28" endLine="27" endOffset="51" /></Expression>
+      </Expressions>
+      <location startLine="22" startOffset="8" endLine="27" endOffset="56" /></Target>
+  </Targets>
+</Layout>
+
+视图布局xml
+<?xml version="1.0" encoding="utf-8"?>
+
+    <RelativeLayout
+        android:id="@+id/activity_data_bind"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" android:tag="layout/activity_data_bind_0" xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:tag="binding_1"     />
+
+        <TextView
+            android:id="@+id/age"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/name"
+            android:tag="binding_2"                    />
+    </RelativeLayout>
+	
+非常有趣的拆分。将数据计算和界面展示分开了，但通过tag连接。编译时生成两个类：ActivityDataBinding类和BR类。
+
+
+架构设计的目的：使程序模块化，是模块内部高聚合，模块之间低耦合。注意，对于不同量级的工程，具体架构的实现方式是不一样的。
+
+MVC
+M(Model)数据模型 V(View)视图（UI控制）  C(controller) 数据逻辑控制
+MVP 
+M(Model)数据模型 V(View)视图 C(controller) 数据逻辑控制+UI控制
+MVVM
+VM是ViewModel的缩写，是View量身打造的model，即数据分模块了。这个data就是给这个view的。
+
+
+
+
+
+
+

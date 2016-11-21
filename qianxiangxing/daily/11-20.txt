@@ -748,12 +748,15 @@ DNS:域名解析系统，将域名解析成IP。
 
 理想的网络模型：低延时、安全、双向数据通道。
 
+原生的HttpurlConnection有哪些坏处？为什么要引进其他的网络框架呢？retrofit、okhttp、volley又是什么？
 
 
 
+OKHttp
+Volley Done!
 
-
-
+Retrofit TODO 
+RxJava TODO 
 
 
 
