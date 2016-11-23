@@ -9,14 +9,6 @@ ShareActionProvider分享，子类
 并且理解Up的概念。
 有一个小任务，使用actionBar，做一个包含fragment的，searchView，acitonProvider等的activity。
 
-
-
-游戏人生
-终结的炽天使
-精灵宝可梦
-七大罪
-
-
 今日学习内容
 1. Theme
 2. 状态栏、window等

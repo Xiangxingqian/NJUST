@@ -1,0 +1,37 @@
+服务和线程
+
+服务是运行在程序后台的组件，并且是运行在UI线程。
+如果服务需要运行耗时操作，那么必须开启线程来执行。
+
+由于UI线程不能进行耗时操作，如读写硬盘，下载，操作请求等，因此必须开启后台线程来执行这些操作。在Android中，有许多线程相关的类，用于执行这些耗时操作。
+AsyncTask 1. 多任务顺序执行 2. 更新UI
+HandlerThread 任务顺序执行 
+ThreadPoolExecutor 线程池：任务并发执行
+
+
+Looper, MeesageQueue, Handler之间的关系 ActivityThread
+一个ActivityThread包含一个Looper和一个MessageQueue和一个handler。
+Looper是什么？
+一个循环器，用于循环遍历MessageQueue。
+MessageQueue是什么？
+一个消息队列，用于存放消息。
+Handler是什么？
+一个往MessageQueue中写message的对象。
+
+那么问题就来了？
+假设有一个方法调用是setImageView(src)，那么将其放在onCreate中执行和thread中执行有什么区别？
+是不是可以认为onCreate方法最后执行也会经过messageQueue?是不是生命周期方法的调用也是通过MessageQueue执行？
+如何验证呢？如果说，真的是这样的话？那么XXX应该成立。
+
+哈哈
+点击View，会调用handler中的dispatchMessage方法.
+
+
+
+
+
+
+
+
+
+

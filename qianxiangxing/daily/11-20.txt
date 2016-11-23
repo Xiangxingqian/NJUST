@@ -699,6 +699,15 @@ ungrouped:
 --如何传递大的数据，如图片，视频。
 --当服务器没有收到响应怎么办？客户端没收到消息怎么办？
 
+http(超文本传输协议)是一个介于请求和响应模式的应用层协议，并具有无状态的特点。
+特点：
+1. 客户端/服务器模式
+2. 简单快速：只需要传请求方法和路径
+3. 灵活：允许使用任意的数据对象。
+4. 无连接：处理完请求后即断开连接
+5. 无状态：对处理过的事务无记忆能力（使用Cookie）
+
+
 HTTP耗时的主要原因：DNS查询、Socket链接、Http请求和data返回四部分。
 
 HTTP请求的内容：
@@ -713,9 +722,16 @@ Request:
 --Cookie:
 --content:请求内容
 
+200 OK      //客户端请求成功
+400 Bad Request  //客户端请求有语法错误，不能被服务器所理解
+401 Unauthorized //请求未经授权，这个状态代码必须和WWW-Authenticate报头域一起使用 
+403 Forbidden  //服务器收到请求，但是拒绝提供服务
+404 Not Found  //请求资源不存在，eg：输入了错误的URL
+500 Internal Server Error //服务器发生不可预期的错误
+503 Server Unavailable  //服务器当前不能处理客户端的请求，一段时间后可能恢复正常
 
 Response: 
---返回码：200 OK
+--返回码：200 OKHttp
 --服务器类型：nginx
 --时间：
 --类型：application/json
@@ -729,12 +745,25 @@ Response:
 
 响应体：json字符串
 
-TODO
+Cookie和Session区别：Cookie是在客户端记录用户信息，Session是服务器端记录信息标志用户。存储什么呢？可能是用户的密码和账号，加载这个界面自动将请求+密码账号发送到服务器，服务器根据用户信息建立用户的访问信息，如用户停留的时间，浏览的界面等等。cookie是为HTTP协议无状态的缺陷做的努力。
+当使用Cookie时，服务器通过在HTTP的响应头中加上一行特殊执行要求浏览器生成Cookie。同时服务器端生成session。
+
+HTTPS详解：
+s表示security，指安全的http协议。那么HTTPS如何保证数据安全的呢？他对网络传输的数据都进行加密。下面讲执行流程：
+1. client发送www.baidu.com给server
+2. server返回一个pub crt(pub key)
+3. 收到pub crt证书后，验证证书是否正确，符合规范（浏览器帮我们判断）
+4. 随机生成一个key，并根据pub crt对其加密生成加密key
+5. server收到加密key，用pri crt解密，得到key
+6. server对传输内容用key加密，将加密后的content返回给client。
+7. client用key解密，get content。
+
+总结：server发送公钥给client，client使用公钥对加密key再次加密，server收到加密加密key得到加密key，在根据加密key加密content，
+client根据加密key解密，得到content。
 
 
 
-
-加密方式: TODO Https
+加密方式: TODO 
 网络名词解释 TODO 
 HTTP协议:
 HTTPS协议:

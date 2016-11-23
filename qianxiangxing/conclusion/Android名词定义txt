@@ -31,6 +31,8 @@ CollapsingToolbarLayout：AppBarLayout的加强版，强调toolbar和scrollView�
 Android沉浸式模式：全屏化
 ?@区别：@指向style，color等，?指向attr
 attr: 如textColor，如果不设置，会取一个默认的颜色，同理，如果 android:textColor="?android:attr/textColor" 照样会设置一个颜色。
+线程安全：多线程访问某个元素时，采用加锁机制，保证多个线程不能同时修改元素内容。
+UI线程：UI线程的主要工作是绘制UI和分发事件。当耗时操作运行在UI线程时，会导致线程阻塞，无法分发事件，即卡顿现象。因此不能将耗时运行在UI线程之中。另外由于UI线程是不安全的，因此不要在非UI线程中绘制UI。
 
 
 context:

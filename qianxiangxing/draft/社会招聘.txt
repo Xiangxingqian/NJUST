@@ -163,9 +163,6 @@
 6、愿意尝试学习不同技术，例如React Native；
 
 
-
-
-
 1）计算机相关专业本科及以上学历，对互联网行业有浓厚兴趣。
 
 2）对敏捷开发模式有较多实践和理解。
@@ -197,8 +194,22 @@
 8. 网络
 9. Context, Service, BroadCast.
 10. MVP和MVVM
+比如AIDL、Binder、多进程、View的绘制流程、事件分发、消息队列等
 
 
+补：
+SharedPreference
+ContentProvider
+SQLite
+
+
+自定义View
+还有Handler的使用
+还有算法
+重点是4大组件 ＋ 多种同步方式 ＋ 网络协议 ＋ 简历中的项目思考
+http/tcp/udp了解下
+framework了解下框架就行了
+比如AIDL、Binder、多进程、View的绘制流程、事件分发、消息队列，比如Activity的启动模式和标记位、Service同时处于start和bind状态时的停止问题、AsyncTask的同步异步问题以及使用时的限制等，这种问题还有很多  这些很多的，了解不完的
 
 
 
