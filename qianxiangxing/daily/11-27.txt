@@ -1,0 +1,138 @@
+3、熟悉Android开发技术，包括Activity，Fragment，Service，Receiver，Intent，Provider；
+4、熟练掌握Android界面布局及绘制、UI动画、数据存储、网络通信等，熟悉XML/JSON解析，并对Socket和HTTP访问有实际开发经验；
+5、熟悉各种常用框架，包括Volley，GSON，UIL，AsyncHttpClient等；
+
+
+数据存储，ContentProvider
+各种框架
+Socket, HTTP
+
+
+Android数据存储方式：
+一. SharePreferences
+1. 什么是SharePreferences？
+SharePreferences是一个键值对存储的轻量数据存储方式。SharePreferences采用XML的方式存储数据(XML存储方便读取), 其文件放在/data/data/<package_name>/shared_prefs。
+
+2. 怎么使用
+2.1 写数据
+SharePreferences sp = getSharePreferences("test", Activity.Mode_private);
+SharePreferences.Editor editor = sp.edit();
+editor.putBoolean("isLogin", true);
+editor.putString(user_id, 123456);
+editor.putString(user_pws, "123");
+editor.apply()
+
+2.2 读取数据
+SharedPreferences sharedPreferences= getSharedPreferences("test",Activity.MODE_PRIVATE);
+String userId=sharedPreferences.getString(USER_ID,"");
+String userPwd=sharedPreferences.getString(USER_PWD,"");
+boolean isLogin=sharedPreferences.getBoolean(USER_ISLOGIN,false);
+
+2.3 监听数据变化
+同setOnClick方法
+
+2.4 读取其他应用的sp
+Context otherAppContext = createPackageContext("com.gary.appdisplaycontrol", Context.CONTEXT_IGNORE_SECURITY);
+            SharedPreferences sharedPreferences = otherAppContext.getSharedPreferences("preferences",Context.MODE_WORLD_READABLE|Context.MODE_MULTI_PROCESS);
+			
+注意：
+1. 内部类监听器会被垃圾回收回收掉，并且最好在onResume中注册监听器，在onPause中销毁监听器。
+2. 修改完数据，要apply。。。千万别手快。
+
+
+
+二、SQLite
+1. 数据库基本知识
+--创建、删除数据库
+--创建、删除表
+--添加主键
+--创建索引
+--创建视图
+--增加一列
+--操作语句
+选择：
+插入：
+删除：
+更新：
+查找：
+排序：
+总数：
+求和：
+平均：
+最大：
+最小：
+
+--操作表：
+UNION、EXCEPT、INTERSECT
+table之间的并、差、交
+
+--外链接
+
+2. 高级使用
+--同一个数据库复制表结构
+select * into b from a where 1<>1
+--同一个数据库拷贝表列
+insert b(a,b,c) select d,e,f from a
+--跨数据库表拷贝
+insert into b(a,b,c) select d,e,f from b in "数据库名" where “条件”
+--子查询
+--显示文章、提交人和最后回复时间？？？
+--外连接查询
+--在线视图查询
+--between 闭区间 [a, b]
+select * from table1 where time between 1 and 2
+--in
+select * from table1 where a in ("1", "2", "4", "6")
+--关联表
+--四表联查
+--前10条记录
+--随机取10条数据
+--随机选择记录
+--列出数据库中所有表名
+--初始化表
+
+
+3. 技巧
+--1=1， 1=2
+--收缩数据库
+--压缩数据库
+--转移数据库
+--检查备份集
+--修复数据库
+--日志清除
+--更改某个表
+--存储更改全部表
+--循环写入数据
+
+
+TODO
+
+
+
+三、ContentProvider
+1. ContentProvider的好处
+--ContentProvider为存储和读取数据提供统一的接口
+--使用ContentProvider可以应用程序之间的应用共享
+--Android系统应用的数据使用ContentProvider存储(如，视频，音频，图片和通讯录等)，供开发者调用。
+
+2. 相关概念介绍
+当应用继承ContentProvider类，并重写该类用于提供数据和存储数据的方法，就可以向其他应用共享其数据。虽然使用其他方法也可以对外共享数据，但数据访问方式会因数据存储的方式而不同，如：采用文件方式对外共享数据，需要进行文件操作读写数据；采用sharedpreferences共享数据，需要使用sharedpreferences API读写数据。而使用ContentProvider共享数据的好处是统一了数据访问方式。
+
+2. Uri类
+
+TODO
+
+有点问题。。。
+
+
+
+
+
+
+
+	
+	
+	
+	
+
+

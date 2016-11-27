@@ -2,7 +2,7 @@
 1. AppCompatActivity
 2. FragmentActivity 继承于AppCompatActivity， getFragmentManager() getSupportFragmentManager()⭐️⭐️⭐️⭐️⭐️
 3. getSupportActionBar() 
-4. AlertDialog 哎哟，终于把那个yes和no之间还有一根竖线的dialog给换掉了，新的还是蛮漂亮的
+4. AlertDialog 哎哟，终于把那个yes和no之间还有竖线的dialog给换掉了，新的还是蛮漂亮的
 5. 主题<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
 设置无title的主题
 <style name="AppTheme.NoActionBar">

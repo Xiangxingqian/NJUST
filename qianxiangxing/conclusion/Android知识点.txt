@@ -36,17 +36,13 @@ SnakeBar snakeBar = SnakeBar.make(view, ...);注意View必须是CoordinateLayout
 滑动，双击放大和缩小，捏，拖拽，活动效果
 
 
-
-
-
-
 --Navigation
 
 --当callback的返回值是boolean类型，表示什么意思？ 好像表示动作已经被终止，不再下传。
 --Activity的onKeyDown方法可以监听物理和键盘按键
 --OnEditorActionListener 当键盘消失的时候调用：既可以点击done，也可以点击空白页。
 --imeOptions: 我们经常看到键盘右下角有一个结束按钮，如下一个，完成，发送，搜索等等，要指定相应的文案，只需一行android:imeOptions="actionSend"即可
---LayoutInflater的第二个参数是什么意思？即ViewGroup有什么用？getLayoutInflator()和LayoutInflator()有什么不同  
+--LayoutInflater的第二个参数是什么意思？即ViewGroup有什么用？
 --弄清楚toolbar，actionBar、menu、window、manifest中icon、theme和title等关系。
 
 AppBar和ToolBar再理解？？？   

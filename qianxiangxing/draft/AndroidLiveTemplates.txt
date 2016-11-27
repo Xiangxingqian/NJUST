@@ -56,7 +56,7 @@ variableOfType(<type>)
 
 
 根据左或右值的类型，指定类型
-rightSideType()
+
 castToLeftSideType()
 
 字符串转驼峰命名

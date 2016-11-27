@@ -1,0 +1,180 @@
+⭐️⭐️⭐️Androidn内存泄漏⭐️⭐️⭐️
+内存泄漏是指GC无法回收无效的对象或者无效的对象一直存在于内存中，无法被GC回收。
+某个对象在该释放的时候由于被其他对象持有没有被释放，因而造成了内存泄露。
+
+
+即对象被一个长期运行的类持有者，如单例模式或者静态方法，或服务，或广播或Handler等。
+
+Android中内存泄漏的场景有：
+1. 长期持有Activity的context。
+2. 忘记注销监听器或观察者
+3. 由静态类或单例类持有。
+
+Android性能调优利器StrictMode(系统自带)
+
+
+
+
+⭐️⭐️⭐️Android注解⭐️⭐️⭐️
+什么是注解？
+注释大家都知道，是说明一个方法、参数、返回值是什么的。
+那么注解呢？是规定一个方法、参数和返回值是什么的东西。
+不懂？没关系，看完下面你就应该明白了。
+
+
+    /**
+     * 获取一个工作日的值
+     * @param weekDay [0,6]中的某一个值
+     * @return 工作日的值
+     */
+public int getWeekDay(int weekDay){
+	return weekDay;
+}
+
+这个时候有小伙伴粗心，没看到注释，他会传入7（他以为是[1,7]），这时候编译不会有错，但运行的时候就会报错了。因此为了说明一个参数或方法的意义，单靠参数名或方法名是不够的，我们要对输入的值进行检查，而且是编译的时候就检查，因此就有注解的概念了。
+
+什么是注解？
+注解是告诉编译器编译的时候要注意我注解的这些问题，你要好好检查，程序的输入是否符合规范。
+
+那么怎么使用呢？
+定义注解：
+ /**
+     * 自定义注解，使用方式如下
+     */
+	 public class Color{
+    @IntDef({RED, GREEN, YELLOW})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface LightColors{}
+
+    public static final int MONDAY = 0;
+    public static final int TUESDAY = 1;
+    public static final int WENSEDAY = 2;
+	....
+	}
+	
+使用注解：
+public int getWeekDay(@LightColors int weekDay){
+	return weekDay;
+}
+
+这时，调用该方法时，必须传递MONDAY,TUESDAY等，0，1，2，100都不行。
+
+
+Android SDK的注解
+SDK中到处都是注解，如CompateContext中
+@ColorInt //输出是color的整数表示
+    public static final int getColor(Context context, @ColorRes int id) {//输入时color的资源类型
+        final int version = Build.VERSION.SDK_INT;
+        if (version >= 23) {
+            return ContextCompatApi23.getColor(context, id);
+        } else {
+            return context.getResources().getColor(id);
+        }
+    }
+
+又如权限检查
+@RequiresPermission(Manifest.permission.INTERNET)
+    public void testPermission(){
+
+    }
+
+调用testPermission(), 若没有在AndroidManifest中声明Internet权限，则会提示错误。
+
+
+继续探究注解
+得深入了解。
+
+
+注解的语法是什么？
+
+
+Java基础之理解Annotation
+是什么？ Annotation其实是一种接口。通过Java的反射机制相关的API来访问annotation信息。相关类（框架或工具中的类）根据这些信息来决定如何使用该程序元素或改变它们的行为。
+
+Annotation不会程序代码的执行。
+Java语言解释器在工作时会忽略这些annotation，因此在JVM	中这些annotation是“不起作用”的，只能通过配套的工具才能对这些annontaion类型的信息进行访问和处理。
+
+Annotation与interface的异同：
+Annotation
+public @interface LightColors {
+}
+
+Interface
+public interface LightColors {
+}
+
+1、两者只有一个@的区别，这个@的意思呢，其实是这个接口继承java.lang.annotation.Annotation接口，不是严格意义的interface。
+2、Annotation类型、方法定义受限制
+Annotation的元素特别有意思，只有方法，没有成员，并且方法必须是无参的且是无异常的，而方法的返回值必须是primitive类型、Class类型(注意不是object类型),枚举类型、Annotation以及这四种类型的一维数组。此外，可以定义缺省值，不可以是null。这个缺省值在方法后面使用default关键字定义，如
+long[] value() default {};
+String str() default "false";
+TODO
+
+3. 应用场合
+annotation一般作为一种辅助途径，应用在软件框架或工具中，在这些工具类中根据不同的 annontation注解信息采取不同的处理过程或改变相应程序元素（类、方法及成员变量等）的行为。
+　　例如：Junit、Struts、Spring等流行工具框架中均广泛使用了annontion。使代码的灵活性大提高。
+
+4. 常见的标准的Annotation
+从Java5后，自带三种标准Annotation类型
+从java5版本开始，自带了三种标准annontation类型,
+　　　　（1）、Override
+　　java.lang.Override 是一个marker annotation类型，它被用作标注方法。它说明了被标注的方法重载了父类的方法，起到了断言的作用。如果我们使用了这种annotation在一个没有覆盖父类方法的方法时，java编译器将以一个编译错误来警示。
+　　这个annotaton常常在我们试图覆盖父类方法而确又写错了方法名时加一个保障性的校验过程。
+　　　　（2）、Deprecated
+　　Deprecated也是一种marker annotation。当一个类型或者类型成员使用@Deprecated修饰的话，编译器将不鼓励使用这个被标注的程序元素。所以使用这种修饰具有一定的 “延续性”：如果我们在代码中通过继承或者覆盖的方式使用了这个过时的类型或者成员，虽然继承或者覆盖后的类型或者成员并不是被声明为 @Deprecated，但编译器仍然要报警。
+　　注意：@Deprecated这个annotation类型和javadoc中的 @deprecated这个tag是有区别的：前者是java编译器识别的，而后者是被javadoc工具所识别用来生成文档（包含程序成员为什么已经过时、它应当如何被禁止或者替代的描述）。
+　　　　（3）、SuppressWarnings
+　　此注解能告诉Java编译器关闭对类、方法及成员变量的警告。
+　　有时编译时会提出一些警告，对于这些警告有的隐藏着Bug，有的是无法避免的，对于某些不想看到的警告信息，可以通过这个注解来屏蔽。
+　　SuppressWarning不是一个marker annotation。它有一个类型为String[]的成员，这个成员的值为被禁止的警告名。对于javac编译器来讲，被-Xlint选项有效的警告名也同样对@SuppressWarings有效，同时编译器忽略掉无法识别的警告名。
+
+
+5. 语法
+
+这个地方有一点要注意，虽然Annotation的元素定义的时候是方法，但使用的时候像是成员变量一样使用，比如value = 1l;
+annotation语法允许在annotation名后跟括号和大括号，括号表示包方法，大括号包数组，方法与方法之间同","隔开，数组元素与数组元素之间同","隔开。例如@SuppressWarnings(value={"unchecked","fallthrough"}, str="hello")
+如果Annotation只包含一个元素，可以省略方法名，如@SuppressWarnings({"unchecked","fallthrough"})
+如果Annotation只有一个元素，且数组元素个数为一个时，就更简单了@SuppressWarnings("fallthrough")
+
+6. 示例
+public static void limitConstant(Class defClass, Class useClass) {
+        IntDef intDef = (IntDef) defClass.getAnnotation(IntDef.class);
+        long[] value = intDef.value();
+        boolean flag = intDef.flag();
+        LightColors lightColors = (LightColors) useClass.getAnnotation(LightColors.class);
+
+        for (Method method : useClass.getMethods()) {
+//            LightColors annotation = method.getAnnotation(LightColors.class);
+            Annotation[][] parameterAnnotations = method.getParameterAnnotations();
+//            Annotation annotation = method.getAnnotation();
+            boolean annotationPresent = method.isAnnotationPresent(LightColors.class);
+        }
+    }
+
+注解机制我算是懂了。其实就是程序分析。
+定义一个注解之后，编译器会自动生成一个类似于注解分析器的类，该类的功能可能包括isParameterValid()或者isMethodReturnValid()，
+这些方法的传入值由Android Studio在用户编写时传入。
+当用户编写代码时，用到了注解类，Android Studio会自动去执行这几个代码，
+比如注解出现在参数中，则调用isParameterValid()，出现在返回值，则调用isMethodReturnValid()。
+那如果报错，则发出警告。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

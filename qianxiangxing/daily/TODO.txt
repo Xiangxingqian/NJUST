@@ -2,3 +2,6 @@
 2. Android的四层架构
 3. Android存储
 4. JNI
+5. EventBus3
+6. 在AndroidStudio创建activity的同时，在AndroidManifest中声明Activity。
+8. 数据库基础

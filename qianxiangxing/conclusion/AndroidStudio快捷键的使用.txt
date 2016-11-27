@@ -1,0 +1,12 @@
+引子
+我们在XML中会定义许多id，如android:id="@+id/tv_one"，而在Java代码中，会重写onClick方法判断哪个id会选中，那么一次性选中所有的id，并copy到Java代码中能少些好多代码，那么怎么实现呢？
+使用Intelli IDEA自带的的编辑功能：
+1. 先选中一个@+id/
+2. 按⇧⌘G(control+command+G)，选中当前文本所有的@+id/
+3. 使用扩展选中(Extend Selection)功能, 默认的快捷键是⌥↑, 但由于这与系统的快捷键冲突，因此需要修改快捷键，我改成⇧⌘E(Extend)
+4. 按⇧⌘E，就可以选中所有的@+id/XXXXXX
+5. 复制到onClick的方法中即可
+
+另外QuickTime好强啊
+
+https://www.jetbrains.com/help/idea/2016.2/selecting-text-in-the-editor.html#smart_expression_selection
