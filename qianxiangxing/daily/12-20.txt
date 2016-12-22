@@ -1,0 +1,56 @@
+今日任务
+1. 阅读Looper，View，RxJava的源代码。
+2. CompileSDKVersion， buildToolsVersion和真机运行时version的区别。
+3. Gradle详解
+4. 为什么RecyclerView使用Databinding刷新两次？
+5. https://github.com/markzhai/DataBindingAdapter 使用 
+
+
+⭐️ CompileSDKVersion
+⭐️ debug SDK代码 顺序错乱，source code does not match the bytecode.
+⭐️ RecyclerView源代码
+
+
+⭐️App使用统计
+商业App需要统计用户使用App的界面的使用情况，了解常用的界面和不常用的界面，根据用户的需求去改进产品，那么如何统计一个App使用情况？如界面的使用频率，界面的逗留时间，button的点击操作等。
+
+在App嵌入统计数据的代码，并以广播的形式，将数据发送回服务器。
+
+友盟就是做这么一个事。
+
+一个例子
+在BaseFragment，BaseActivity中添加打点统计。
+
+代码
+MobclickAgent.onPageStart(getUmengPageName());
+MobclickAgent.onPageEnd(getUmengPageName()); 统计界面的逗留时间
+
+GreenIO
+
+⭐️⭐️⭐️回调是如何执行的？
+比如btn.setOnClickListener(listener), listener一般是接口，定义一个方法，回调是指在btn.setOnClickListener中或者btn的使用阶段一定会有一条
+listerner.onClick语句，只是你无需关心这条语句是在哪或者何时执行的，但一定会执行。⭐️⭐️⭐️
+
+回调是异步执行的机制，如果没有异步操作，就没有回调。如果都是主动调用，怎么会有回调的说法呢？
+
+
+
+⭐️⭐️⭐️进程保活
+为什么要进程保活？
+我的App老是被用户杀死，好不爽，怎么才能让我的App不被杀死呢？这就是进程保活。
+
+Android进程回收机制--当系统无法支持再多的进程时，系统会根据进程回收机制low memory killer来回收进程。他是基于Linux内核的oom killer(out of memory)。还有一个概念叫oom_adj，系统分配给进程的值，代表进程的优先级。
+oom_adj越大，优先级越低，越小越高。系统的甚至<0
+
+
+前台进程>可见进程>服务进程>后台进程>空进程
+
+保活方式有三种：
+1. 通过App间相互调用或系统广播调用
+2. 开启前台进程
+3. 利用系统漏洞启动服务--开启两个id相同的前台服务，再将第一个前台服务停止。
+
+
+
+
+

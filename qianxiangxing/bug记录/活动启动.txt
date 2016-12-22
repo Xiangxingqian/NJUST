@@ -1,0 +1,16 @@
+activity.onCreate
+activity.startPostponedEnterTransition
+instrumentation.callActivityOnCreate
+ActivityThread.handleLaunchActivity
+actvity.performLaunchActivity
+
+
+fragmentManager.moveToState
+fragment.performCreate
+baseFragment.onCreate
+
+fragment.onActivityCreated
+
+
+view->data done
+view->databinding->data done

@@ -1,0 +1,80 @@
+RecyclerView下拉刷新时，数据重影
+
+
+⭐️⭐️⭐️
+12-16 09:44:00.926 32445-32445/com.docrab.pro D/DocRabPro: com.docrab.pro.app.CrashHandler.uncaughtException(): [82]Error[android.view.InflateException: Binary XML file line #66: Error inflating class com.docrab.pro.ui.page.task.TaskShapeTextView
+                                                               at android.view.LayoutInflater.createView(LayoutInflater.java:633)
+                                                               at android.view.LayoutInflater.createViewFromTag(LayoutInflater.java:743)
+                                                               at android.view.LayoutInflater.rInflate(LayoutInflater.java:806)
+                                                               at android.view.LayoutInflater.rInflate(LayoutInflater.java:809)
+                                                               at android.view.LayoutInflater.inflate(LayoutInflater.java:504)
+                                                               at android.view.LayoutInflater.inflate(LayoutInflater.java:414)
+                                                               at com.docrab.pro.widget.recycler.adapter.TaskItemViewHolder2.<init>(TaskItemViewHolder2.java:0)
+                                                               at com.docrab.pro.ui.page.task.TaskAdapter.onCreateViewHolder(TaskAdapter.java:41) at com.docrab.pro.widget.recycler.DRWrapRecyclerAdapter.onCreateViewHolder(DRWrapRecyclerAdapter.java:240)
+                                                               at android.support.v7.widget.RecyclerView$Adapter.createViewHolder(RecyclerView.java:5476)
+                                                               at android.support.v7.widget.RecyclerView$Recycler.getViewForPosition(RecyclerView.java:4701)
+                                                               at android.support.v7.widget.RecyclerView$Recycler.getViewForPosition(RecyclerView.java:4611)
+                                                               at android.support.v7.widget.LinearLayoutManager$LayoutState.next(LinearLayoutManager.java:1988)
+                                                               at android.support.v7.widget.LinearLayoutManager.layoutChunk(LinearLayoutManager.java:1384)
+                                                               at android.support.v7.widget.LinearLayoutManager.fill(LinearLayoutManager.java:1347)
+                                                               at android.support.v7.widget.LinearLayoutManager.onLayoutChildren(LinearLayoutManager.java:574)
+                                                               at android.support.v7.widget.RecyclerView.dispatchLayoutStep2(RecyclerView.java:3026)
+                                                               at android.support.v7.widget.RecyclerView.dispatchLayout(RecyclerView.java:2903)
+                                                               at android.support.v7.widget.RecyclerView.onLayout(RecyclerView.java:3277)
+                                                               at android.view.View.layout(View.java:15697)
+                                                               at android.view.ViewGroup.layout(ViewGroup.java:5050)
+                                                               at in.srain.cube.views.ptr.PtrFrameLayout.layoutChildren(PtrFrameLayout.java:265)
+                                                               at in.srain.cube.views.ptr.PtrFrameLayout.onLayout(PtrFrameLayout.java:234)
+                                                               at android.view.View.layout(View.java:15697)
+                                                               at android.view.ViewGroup.layout(ViewGroup.java:5050)
+                                                               at android.widget.RelativeLayout.onLayout(RelativeLayout.java:1077)
+                                                               at android.view.View.layout(View.java:15697)
+                                                               at android.view.ViewGroup.layout(ViewGroup.java:5050)
+                                                               at android.widget.RelativeLayout.onLayout(RelativeLayout.java:1077)
+                                                               at android.view.View.layout(View.java:15697)
+                                                               at android.view.ViewGroup.layout(ViewGroup.java:5050)
+                                                               at android.widget.FrameLayout.layoutChildren(FrameLayout.java:579)
+                                                               at android.widget.FrameLayout.onLayout(FrameLayout.java:514)
+                                                               at android.view.View.layout(View.java:15697)
+                                                               at android.view.ViewGroup.layout(ViewGroup.java:5050)
+                                                               at android.widget.LinearLayout.setChildFrame(LinearLayout.java:1703)
+                                                               at android.widget.LinearLayout.layoutVertical(LinearLayout.java:1557)
+                                                               at android.widget.LinearLayout.onLayout(LinearLayout.java:1466)
+                                                               at android.view.View.layout(View.java:15697)
+                                                               at android.view.ViewGroup.layout(ViewGroup.java:5050)
+                                                               at android.widget.FrameLayout.layoutChildren(FrameLayout.java:579)
+                                                               at android.widget.FrameLayout.onLayout(FrameLayout.java:514)
+                                                               at android.view.View.layout(View.java:15697)
+                                                               at android.view.ViewGroup.layout(ViewGroup.java:5050)
+                                                               at android.widget.LinearLayout.setChildFrame(LinearLayout.java:1703)
+                                                               at android.widget.LinearLayout.layoutVertical(LinearLayout.java:1557)
+                                                               at android.widget.LinearLayout.onLayout(LinearLayout.java:1466)
+                                                               at android.view.View.layout(View.java:15697)
+                                                               at android.view.ViewGroup.layout(ViewGroup.java:5050)
+                                                               at android.widget.FrameLayout.layoutChildren(FrameLayout.java:579)
+                                                               at android.widget.FrameLayout.onLayout(FrameLayout.java:514)
+                                                               at android.view.View.layout(View.java:15697)
+                                                               at android.view.ViewGroup.layout(ViewGroup.java:5050)
+                                                               at android.view.ViewRootImpl.performLayout(ViewRootImpl.java:2237)
+                                                               at android.view.ViewRootImpl.performTraversals(ViewRootImpl.java:1987)
+                                                               at android.view.ViewRootImpl.doTraversal(ViewRootImpl.java:1166)
+                                                           	at android.view.ViewRootImpl$TraversalRunnable.run(ViewRootImpl.
+
+TypedArray a = context.obtainStyledAttributes(attributeSet, R.styleable.ShapeTextView);
+//        try {
+//            radius = a.getDimensionPixelSize(R.styleable.ShapeTextView_radiusT, 0);
+//            bottomLeftRadius = a.getDimensionPixelSize(R.styleable.ShapeTextView_bottomLeftRadiusT, 0);
+//            bottomRightRadius = a.getDimensionPixelSize(R.styleable.ShapeTextView_bottomRightRadiusT, 0);
+//            topLeftRadius = a.getDimensionPixelSize(R.styleable.ShapeTextView_topLeftRadiusT, 0);
+//            topRightRadius = a.getDimensionPixelSize(R.styleable.ShapeTextView_topRightRadiusT, 0);
+//            solidColor = a.getColor(R.styleable.ShapeTextView_solidColorT, Color.TRANSPARENT);
+//            strokeColor = a.getColor(R.styleable.ShapeTextView_strokeColorT, Color.TRANSPARENT);
+//            strokeWidth = a.getDimensionPixelSize(R.styleable.ShapeTextView_strokeWidthT, 0);
+//            dashWidth = a.getDimensionPixelSize(R.styleable.ShapeTextView_dashWidthT, 0);
+//            dashGap = a.getDimensionPixelSize(R.styleable.ShapeTextView_dashGapT, 0);
+////            status = a.getInteger(R.styleable.TaskShapeTextView_status, 0); 这里写错了，a中没有TaskShapeTextView_status属性。
+//        } finally {
+//            a.recycle();
+//        }
+
+另外，attrs中不能含有重名的属性, <declare-styleable>不能继承

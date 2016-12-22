@@ -76,3 +76,5 @@ myAIDLService = MyAIDLService.Stub.asInterface(service)，根据IBinder获取Ser
 
 
 
+
+

@@ -1,0 +1,6 @@
+step over, step into, force step into, step out, drop frame 比较
+step over：跳过，方法调用也是跳过
+step into：跳进自定义方法，不能跳系统方法
+force step into: 跳进系统方法
+step out: 跳出方法，回到方法的调用处， 继续执行
+drop frame: 跳出方法，回答方法的调用处，重新执行

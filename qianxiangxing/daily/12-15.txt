@@ -1,0 +1,6 @@
+启动过程：
+1. activity.onCreate
+2. fragment.onActivityCreated
+3. adapter = createAdapter();
+4. mRecyclerView.setAdapter(mAdapter);
+5. activity.onStart

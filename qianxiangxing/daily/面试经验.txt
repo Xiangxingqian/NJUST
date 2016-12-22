@@ -1,0 +1,33 @@
+面试的时候不是展示你有哪些优点，而是展示公司需要什么？而你有什么。你优点再多，不会干活，依然过不了。
+专业知识才是核心竞争力。
+
+
+面试题
+1. 多线程有哪几种实现方式？同步有几种实现方式？sleep和wait的区别是什么
+2. Unicode、ANSI等编码方式有什么区别
+3. Handler, MessageQueue交互 event bus
+4. 客户端与服务端交互
+5. GET和POST有什么区别？
+6. 四大组件
+7. JSON和XML的优缺点
+8. 单例模式
+9. 多分辨率适配
+10. ANR
+
+Java基础和Android基础
+
+Android基础
+1. Android Activity嵌套一个Fragment，生命周期方法何种顺序？
+2. RecyclerView有哪几种刷新方式？
+3. Activity的四种加载方式？如果采用singleInstance，如何传值？
+4. Fragment的创建方式有几种？
+4. 算法：如何判断一个单链表是否有环？
+
+
+
+
+接下去要学习：
+1. Android基础，上述列举的
+2. Android注解：Reactive, eventbus, butterknife, router, hydrid
+3. JavaScript
+4. 原理性的知识，如databingding等

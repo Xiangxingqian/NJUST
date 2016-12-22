@@ -1,0 +1,269 @@
+⭐️ 无
+⭐️⭐️ 理解
+⭐️⭐️⭐️ 掌握
+⭐️⭐️⭐️⭐️ 熟练
+⭐️⭐️⭐️⭐️⭐️精通
+
+1. Android五种数据存储方式，分别有什么特点？⭐️⭐️⭐️ 
+File: 读写文件去存数据
+SharePreferences：存储一些简单数据类型的二元组，数据类型只能是int，Float，Boolean，long,String,StringSet(Set)
+Sqlite: 轻量级的数据库
+ContentProvider：应用之间交流数据的组件
+网络存储：
+
+2. MVC、MVP、MVVM的区别？⭐️⭐️⭐️⭐️⭐️
+Controller：控制在Activity中 
+Presenter：单独使用类进行控制
+VM：使用databinding
+
+3. 简述SharedPreferences存储方式以及SharedPreferences与SQLite数据库的区别。⭐️⭐️⭐️⭐️⭐️
+SharedPreferences也是一种轻型的数据存储方式，它的本质是基于XML文件存储key-value键值对数据，通常用来存储一些简单的配置信息。其存储位置在/data/data/<包名>/shared_prefs目录下。SharedPreferences对象本身只能读取数据而不支持写入数据，存储修改是通过Editor对象实现。SharedPreferences对象与SQLite数据库相比，免去了创建数据库，创建表，写SQL语句等诸多操作，相对而言更加方便，简洁。但是SharedPreferences也有其自身缺陷，比如其职能存储boolean，int，float，long和String五种简单的数据类型，比如其无法进行条件查询等。所以不论SharedPreferences的数据存储操作是如何简单，它也只能是存储方式的一种补充，而无法完全替代如SQLite数据库这样的其他数据存储方式。
+
+4. 描述handler 机制的原理⭐️⭐️⭐️⭐️⭐️
+andriod提供了 Handler 和 Looper 来满足线程间的通信。
+　　Handler 先进先出原则。Looper类用来管理特定线程内对象之间的消息交换(Message Exchange)。
+　　1）Looper: 一个线程可以产生一个Looper对象，由它来管理此线程里的Message Queue(消息队列)。
+　　2）Handler: 你可以构造Handler对象来与Looper沟通，以便push新消息到Message Queue里;或者接收Looper从Message Queue取出)所送来的消息。
+　　3）Message Queue(消息队列):用来存放线程放入的消息。
+　　4）线程：UI thread 通常就是main thread，而Android启动程序时会替它建立一个Message Queue。
+
+5. 显式intent和隐式intent的区别是什么（Android）⭐️⭐️⭐️⭐️⭐️
+
+6. 比较RecyclerView和ListView？各有什么缺点？⭐️ TODO 
+
+7. 如何操作ContentProvider？Android中如何访问自定义ContentProvider? TODO ⭐️
+
+8. 描述4中Activity的启动模式⭐️⭐️⭐️⭐️⭐️
+Standard：一个跳转创建一个实例，一个activity可以创建任意多的实例
+singleTop：可以创建多个实例，但是当activity处于栈顶的时候，在跳转到自己时(自跳转)，不创建instance，复用自己。常见的场景是搜索，每次搜索都会跳转到搜索界面，那么搜索界面可能会加载多次，但是设置singleTop的时候就只出现一次。注意要重写onNewIntent()方法。
+singleTask：singleTask和singleInstance都是只创建一个实例，当activity再一次被启用时，调用之前的activity实例。复用的话，还是调用onNewIntent方法。这个地方存在一个问题，源activity与目标activity是否处于一个应用，如果是同一个应用，如果栈中不存在实例，那比较简单。如果存在实例呢？系统会把目标activity之上的所有activity销毁，让Activity置于栈顶。如果来自不同应用，则创建任务栈，将其置于栈顶，销毁之上的所有栈。
+首页置为singleTop，初始化操作。
+Activity的堆栈管理以ActivityRecord为单位,所有的ActivityRecord都放在一个List里面.可以认为一个ActivityRecord就是一个Activity栈
+singleInstance：设为这种模式的activity独占一个任务栈，这样一个应用可能有多个任务栈。来电显示。老子一个人独享任务栈。
+
+9. Android中的动画有哪几类，它们的特点和区别是什么？⭐️
+主要有三种：
+ViewAnimation：透明度动画。View会回到原点，当动画结束时。startAnimation(Animation animator)
+PropertyAnimation：透明度动画，靠改变View的属性，展现动画。View会停留在动画结束状态。(ObjectAnimator)
+Frame：逐帧播放图片。
+
+10. 如何保证Service不被杀死，如何保持一个长久的Service  首先服务是不是一直运行于后台的？当activity被杀死后，他能否继续执行，能。会导致什么问题？
+一、提高服务的优先级
+--启动前台service
+--提升Service的优先级，在AndroidManifest中设置priority属性。
+二、当Service被杀死时，进行拉活
+--在onDestroy方法中重启Service，使用广播启动Service。
+--不定时地启动Service。
+
+12. Activity和Fragment生命周期有哪些？ 见图⭐️
+生命周期方法：A->B 
+启动B：A.onPause->B.onCreate->B.onStart()->B.onResume->A.stop
+返回A: B.pause->A.restart->A.start->B.onStop->B.onDestroy
+
+
+13. 横竖屏切换时候Activity的生命周期 ⭐️⭐️⭐️
+有没有设置android:configChanges属性，如果没有设置，则会调用声明周期方法，横屏一次，竖屏也是一次，如果设置，但configChanges=“orientaion”，则依然会调用声明周期方法，但都是调用一次；configChanges=”orientation|hidden”时，不会调用生命周期方法，但会调用onConfigrationChanged()方法。
+屏幕旋转
+转横屏：
+onPause() 
+onSaveInstanceState() 
+onStop() 
+onDestroy() 
+onCreate() 
+onStart() 
+onRestoreInstanceState() 
+onResume() 
+
+转竖屏：
+onPause() 
+onSaveInstanceState() 
+onStop() 
+onDestroy() 
+onCreate() 
+onStart() 
+onRestoreInstanceState() 
+onResume() 
+
+14. AsyncTask TODO 
+
+15. onSaveInstanceState() 与onRestoreIntanceState()⭐️⭐️⭐️
+用户或者程序员主动去销毁一个Activity的时候不会掉用，其他情况都会调动，来保存界面信息。如代码中finish（）或用户按下back，不会掉用。
+
+16. android中进程的优先级？⭐️⭐️⭐️
+前台进程：正在与用户交互的activity
+可见进程：activity可见，并不一定位于前台，如dialog显示、透明activity显示、运行时权限显示(是一个activity哦)。可见但不可交互
+服务进程：start Service
+后台进程：按下home键之后的activity
+空进程：上述四种以外的进程
+与用户交互的activity->a dialog happen->start a service->press home->other
+前台进程 可见进程 服务进程 后台进程 其他
+
+17. Serializable和Parcelable⭐️⭐️⭐️
+--Serializable将对象属性保存到本地文件、数据库、网络中，当然可以在程序内传递。
+--Parcelable在程序内以及不同应用之间传递数据，但只能在内存中存在，不能永久性保存。
+
+效率和选择
+使用应用内数据传递，如Intent传递数据时，使用Parcelable。
+永久性保存使用Serializable。
+
+使用
+实现序列化只要实现Serializable接口，并添加一个序列化版本Id即可，
+private static final long serialVersionUID = 1L;
+而实现Parcelable需要重写writeToParcel、describeContents函数以及静态的CREATOR变量
+
+序列化，表示将一个对象转换成可存储或可传输的状态。Android专用
+
+100.  Hashcode的作用，与 equal 有什么区别 ⭐️⭐️⭐️⭐️⭐️
+HashCode是jdk根据对象的地址算出来的int值，是hash值。主要为了提高哈希表的检索性能。一般来说，重写equals必须重写hashCode，但实际上不重写HashCode也没关系，但是由于hashMap等是用hashCode去判断两个值是否相同的，因此，最好还是重写了。
+
+101. ArrayList、LinkedList、Vector的区别？
+
+102. 什么是线程池，线程池的作用是什么？
+
+103. 注册Service需要注意什么，Service与Activity怎么实现通信，介绍源码中binder机制， IntentService与Service的区别？
+
+104. ListView卡顿的原因与性能优化，越多越好？怎么实现一个部分更新的 ListView？怎么实现ListView多种布局？ListView与数据库绑定的实现
+
+105. JNI是什么？
+
+106. 什么OOM？内存泄漏有哪些场景以及解决方法？如何避免 OOM 问题的出现
+
+107. 什么ANR？ANR是怎么引起的？如何避免ANR问题的出现
+
+108. Asynctask问题？AsynTask为什么要设计为只能够一次任务？AsynTask为什么要设计为只能够一次任务？若Activity已经销毁，此时AsynTask执行完并且返回结果，会报异常吗?
+
+109. Android触摸分发机制
+View中 setOnTouchListener的onTouch，onTouchEvent，onClick的执行顺序。
+
+110. JVM and DVM
+
+111. 注册广播接收器有哪几种方式,有什么区别？
+
+112. 不使用动画，怎么实现一个动态的 View？
+
+113. Postvalidata与Validata有什么区别？
+
+114. View的绘制流程
+
+115. fragement里面可以再嵌套fragment？
+
+116. Scrollview怎么判断是否滑倒底部
+
+117. Context与ApplicationContext的区别，分别用在什么情况下
+
+
+
+
+18. EventBus TODO
+
+19. Context，ApplicationContext等的区别。
+
+20. Json ⭐️⭐️⭐️
+JavaScript Object Notation, JavaScripte对象表示法
+Gson解析
+Gson gson = new Gson();
+TypeToken<T> token = new TypeToken<T>(){};
+gson.fromGson(s, token.getType());
+
+键值对 "key":"value"
+[] 表示数组
+{} 表示对象
+
+
+21. android中有哪几种解析xml的类,官方推荐哪种？以及它们的原理和区别 TODO
+Dom解析、SAX解析和XMLPull解析
+
+22. Jar和Aar的区别⭐️⭐️⭐️
+Jar：Java Application resource, android application resource；
+.jar 中只包含class文件和清单文件
+.aar 中包含了class文件和其他所有资源文件，包括res中资源文件
+比如你的lib库是一个自定义view封装，里面不仅有class文件并且包含了资源文件，那么此时你就需要将这个库以.aar的形式来提供给使用。
+Jar包里面只有代码，aar里面不光有代码还包括代码还包括资源文件，比如 drawable 文件，xml 资源文件。对于一些不常变动的 Android Library，我们可以直接引用 aar，加快编译速度
+
+23. 更新UI方式 TODO
+Activity.runOnUiThread(Runnable)
+View.post(Runnable),View.postDelay(Runnable,long)
+Handler
+AsyncTask
+
+25. SurfaceView和View的最本质的区别
+
+26. View绘制流程
+
+27. Android系统的架构：应用层、应用框架层、系统运行库层和内核
+
+28. Binder机制
+
+11. ButterKnife原理 TODO⭐️
+
+进阶
+1. 引起内存泄漏的情况
+2. Android 内存溢出解决方案（OOM） 整理总结
+3. Activity/Window/View三者的差别,fragment的特点
+4. Fragment 特点
+5. 自定义View的相关方法
+1.自定义属性
+2.onLayout(Viewgroup)
+3.onMesure
+4.onDraw
+5.交互:
+onIntercepterTouchEvent()
+onTouchEvent()
+
+6. Scroller原理
+7. ANR排错
+8. AIDL的全称是什么?如何工作?能处理哪些类型的数据?
+
+9. FC(Force Close)
+Error
+OOM，内存溢出
+StackOverFlowError
+Runtime,比如说空指针异常
+10. 性能优化
+24. JVM 和Dalvik虚拟机的区别
+
+
+
+Java中的线程同步有哪几种方式，举例说明；
+28. dp, dip, dpi, px, sp是什么意思以及他们的换算公式？layout-sw400dp, layout-h400dp分别代表什么意思；
+29. 如何让两个TextView在一个RelativeLayout水平居中显示；
+30. 如何画出一个印章的图案
+31. 如何实现一个字体的描边与阴影效果
+32. 设计一个从网络请求数据，图片，并加载到列表的系统，画出客户端架构并简单的分析下；
+33. 设计一个文件的断点续传系统；
+34. 设计一个图片缓存加载机制
+数据结构与算法部分：
+
+给最外层的rootview，把这个根视图下的全部button背景设置成红色，手写代码，不许用递归
+给一串字符串比如abbbcccd，输出a1b3c3d1，手写代码（注意有个别字符可能会出现十次以上的情况）
+一个序列，它的形式是12349678，9是最高峰，经历了一个上升又下降的过程，找出里面的最大值的位置，要求效率尽可能高
+二叉查找树的删除操作，手写代码
+反转链表，手写代码
+二分查找，手写代码
+有海量条 url，其中不重复的有300万条，现在希望挑选出重复出现次数最高的 url，要求效率尽可能的高
+一篇英语文章，去掉字符只留下k个，如何去掉才能使这k个字符字典序最小
+弗洛伊德算法和 Dijkstra算法的区别？复杂度是多少？讲讲 Dijkstra算法的具体过程
+反转字符串，要求手写代码，优化速度、优化空间
+给出两个无向图，找出这2个无向图中相同的环路。手写代码
+单例模式，手写代码
+生产者与消费者，手写代码
+二叉树镜像，手写代码
+最长不重复子串（最长重复子串），手写代码
+操作系统部分：
+
+分别从操作系统的内存角度与进程线程角度解释分析堆，栈二者的区别
+什么是事务？
+OSI七层模型有哪些，各层次的作用
+TCP的三次握手过程，四次挥手过程，为什么需要三次？
+说说操作系统中进程的通信方式
+浏览器输入地址之后，之后的过程
+谈谈 HTTP 中Get 和 Post 方法的区别？
+
+AIDL:接口定义语言
+服务start和bind两种方式
+Dvm和JVM和linux进程
+
+
+
+
+

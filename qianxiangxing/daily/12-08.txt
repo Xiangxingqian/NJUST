@@ -1,0 +1,69 @@
+RxJava使用
+被动的观察者模式
+当被观察者发生数据变动的时候，观察者不会及时更新数据，而是通过被观察者主动告知。观察者和被观察者之间有交互。
+
+
+
+发布和订阅模式：发布者和订阅者
+发布者：发布n个事件
+订阅者：收到事件后，执行操作
+特点：
+--一对多的关系，发布者无需关心被那个订阅者订阅。
+--发布者无需关心事件如何被操作。订阅者执行操作。
+
+
+观察者模式：观察者和被观察者
+观察者：观察被观察者的一举一动
+被观察者：发送事件
+--观察者与被观察者一一对应
+
+
+new Thread() {
+    @Override
+    public void run() {
+        super.run();
+        for (File folder : folders) {
+            File[] files = folder.listFiles();
+            for (File file : files) {
+                if (file.getName().endsWith(".png")) {
+                    final Bitmap bitmap = getBitmapFromFile(file);
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            imageCollectorView.addImage(bitmap);
+                        }
+                    });
+                }
+            }
+        }
+    }
+}.start();
+
+
+Observable.from(folders)
+    .flatMap(new Func1<File, Observable<File>>() {
+        @Override
+        public Observable<File> call(File file) {
+            return Observable.from(file.listFiles());
+        }
+    })
+    .filter(new Func1<File, Boolean>() {
+        @Override
+        public Boolean call(File file) {
+            return file.getName().endsWith(".png");
+        }
+    })
+    .map(new Func1<File, Bitmap>() {
+        @Override
+        public Bitmap call(File file) {
+            return getBitmapFromFile(file);
+        }
+    })
+    .subscribeOn(Schedulers.io())
+    .observeOn(AndroidSchedulers.mainThread())
+    .subscribe(new Action1<Bitmap>() {
+        @Override
+        public void call(Bitmap bitmap) {
+            imageCollectorView.addImage(bitmap);
+        }
+    });

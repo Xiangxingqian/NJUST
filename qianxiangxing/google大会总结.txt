@@ -1,0 +1,8 @@
+大会开始
+开幕第一幕：Time。强调时间的重要性。
+主题：Android、FireBase、Angular、TensorFlow、deep learning等。
+
+我听的六场分别是：Angular介绍、FireBase的使用、Android support包、FireBase Analytics、TensorFlow以及Android电量和内存管理。
+
+第一场：Angular介绍
+Angular是为克服HTML在构建应用上的不足而设计的
